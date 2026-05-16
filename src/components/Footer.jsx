@@ -11,7 +11,7 @@ export default function Footer() {
       <div className="h-1 w-full bg-gradient-to-r from-blue-600 via-blue-500 to-orange-500" />
 
       {/* ── CTA Banner ── */}
-      <div className="bg-gradient-to-br from-blue-700 via-blue-600 to-blue-800">
+      <div className="bg-gradient-to-br from-blue-700 via-blue-700 to-blue-800">
         <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
           <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
             <div>
@@ -130,8 +130,8 @@ export default function Footer() {
             <div className="grid gap-3">
               {[
                 { icon: "MapPin", text: "Kashi Keshav NGO Office, India", color: "orange" },
-                { icon: "Mail", text: "hello@kashikeshav.org", color: "blue" },
-                { icon: "Phone", text: "+91 98765 43210", color: "blue" },
+                { icon: "Mail", text: "Kashikeshav01@gmail.com", color: "blue" },
+                { icon: "Phone", text: "+91 9821673232", color: "blue" },
               ].map(({ icon, text, color }) => (
                 <div key={text} className="flex items-center gap-3">
                   <span
@@ -177,7 +177,7 @@ export default function Footer() {
         <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
           <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-sm font-semibold text-slate-400">
-              © 2026 Kashi Keshav. All rights reserved.
+              © 2026 Kashikeshav child care foundation. All rights reserved.
             </p>
             <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
               <Link to="/privacy" className="text-sm font-semibold text-slate-400 transition hover:text-blue-700">

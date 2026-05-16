@@ -75,7 +75,7 @@ export default function Contact() {
                 {[
                   ["MapPin", "Address", "Kashi Keshav NGO Office, India"],
                   ["Mail", "Email", "Kashikeshav01@gmail.com"],
-                  ["Phone", "Phone", "+91 98765 43210"],
+                  ["Phone", "Phone", "+91 9821673232"],
                 ].map(([icon, label, value]) => (
                   <div key={label} className="flex gap-3 rounded-[1.15rem] bg-slate-50 p-4 ring-1 ring-slate-100 sm:gap-4 sm:rounded-3xl">
                     <span className="grid h-11 w-11 place-items-center rounded-2xl bg-white text-blue-700 shadow-sm">

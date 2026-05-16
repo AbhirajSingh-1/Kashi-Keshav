@@ -25,17 +25,17 @@ export const images = {
 }
 
 export const stats = [
-  { label: "Children supported", value: 12800, suffix: "+" },
-  { label: "Active volunteers", value: 420, suffix: "+" },
-  { label: "Donation drives", value: 86, suffix: "+" },
-  { label: "Community campaigns", value: 64, suffix: "+" },
+  { label: "Children supported", value: 200, suffix: "+" },
+  { label: "Active volunteers", value: 20, suffix: "+" },
+  { label: "Donation drives", value: 35, suffix: "+" },
+  { label: "Community campaigns", value: 10, suffix: "+" },
 ]
 
 export const impactMetrics = [
-  { label: "Meals served", value: 52000, suffix: "+" },
-  { label: "School kits shared", value: 7800, suffix: "+" },
-  { label: "Health checkups", value: 4100, suffix: "+" },
-  { label: "Shelter assists", value: 950, suffix: "+" },
+  { label: "Meals served", value: 2000, suffix: "+" },
+  { label: "School kits shared", value: 300, suffix: "+" },
+  { label: "Health checkups", value: 100, suffix: "+" },
+  { label: "Shelter assists", value: 50, suffix: "+" },
 ]
 
 export const programs = [
@@ -156,7 +156,7 @@ export const volunteers = [
     name: "Veer Jha",
     location: "Ahmedabad",
     age: 27,
-    image: pexels(36876208, 900),
+    image: "/Veer Jha.webp",
     contribution:
       "Coordinates education kit drives and helps build local student mentoring circles in Ahmedabad.",
   },
@@ -164,7 +164,9 @@ export const volunteers = [
     name: "Sandeep Anand",
     location: "Bihar",
     age: 33,
-    image: pexels(2324638, 900),
+    image: "/Sandeep Anand.webp",
+    imageFit: "contain",
+  imagePosition: "center",
     contribution:
       "Supports rural outreach, family counselling connections, and relief distribution planning.",
   },
@@ -182,7 +184,7 @@ export const volunteers = [
     name: "Vikas Gupta",
     location: "Kolkata",
     age: 31,
-    image: pexels(36485304, 900),
+    image: pexels(36876208, 900),
     contribution:
       "Organizes food drives, sponsor coordination, and field support for child welfare campaigns.",
   },
