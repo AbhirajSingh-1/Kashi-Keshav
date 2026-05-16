@@ -148,7 +148,7 @@ export const founder = {
   imageFit: "contain",
   imagePosition: "center",
   contribution:
-    "Sakshi leads Kashi Keshav with a focus on education access, emotional care, and volunteer-led community support for children.",
+    "Ms. Sakshi leads Kashi Keshav with a focus on education access, emotional care, and volunteer-led community support for children.",
 }
 
 export const volunteers = [

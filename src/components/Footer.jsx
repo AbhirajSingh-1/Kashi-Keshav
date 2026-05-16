@@ -129,7 +129,7 @@ export default function Footer() {
 
             <div className="grid gap-3">
               {[
-                { icon: "MapPin", text: "Kashi Keshav NGO Office, India", color: "orange" },
+                { icon: "MapPin", text: "Saraswati nagar road number 2 Near Shiv Mandir, Muzaffarpur, Bihar ", color: "orange" },
                 { icon: "Mail", text: "Kashikeshav01@gmail.com", color: "blue" },
                 { icon: "Phone", text: "+91 9821673232", color: "blue" },
               ].map(({ icon, text, color }) => (
@@ -150,7 +150,7 @@ export default function Footer() {
 
             <div className="mt-5 grid grid-cols-2 gap-3">
               {[
-                { num: "12K+", label: "Children Helped", color: "blue" },
+                { num: "2K+", label: "Children Helped", color: "blue" },
                 { num: "8", label: "States Active", color: "orange" },
               ].map(({ num, label, color }) => (
                 <div

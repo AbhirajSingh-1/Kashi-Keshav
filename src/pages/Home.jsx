@@ -38,6 +38,8 @@ export default function Home() {
             <p className="mb-4 inline-flex rounded-full bg-white/12 px-3 py-1.5 text-[0.68rem] font-black uppercase tracking-[0.14em] text-orange-100 ring-1 ring-white/20 backdrop-blur sm:mb-5 sm:px-4 sm:py-2 sm:text-xs sm:tracking-[0.2em]">
               Child welfare NGO across India
             </p>
+            <p className="mb-4 inline-flex rounded-full bg-white/12 px-3 py-1.5 text-[0.68rem] font-black uppercase tracking-[0.14em] text-orange-100 ring-1 ring-white/20 backdrop-blur sm:mb-5 sm:px-4 sm:py-2 sm:text-xs sm:tracking-[0.2em]">
+Foundation date-27/01/2025            </p>
             <h1 className="text-balance text-3xl font-black leading-[1.08] min-[380px]:text-4xl sm:text-6xl sm:leading-[1.03] lg:text-7xl">
               Every child deserves safety, learning, and a hopeful tomorrow.
             </h1>

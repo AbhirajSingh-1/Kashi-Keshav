@@ -73,7 +73,7 @@ export default function Contact() {
               <h3 className="text-xl font-black text-slate-950 sm:text-2xl">Contact details</h3>
               <div className="mt-6 grid gap-4">
                 {[
-                  ["MapPin", "Address", "Kashi Keshav NGO Office, India"],
+                  ["MapPin", "Address", "Saraswati nagar road number 2 Near Shiv Mandir, Muzaffarpur, Bihar "],
                   ["Mail", "Email", "Kashikeshav01@gmail.com"],
                   ["Phone", "Phone", "+91 9821673232"],
                 ].map(([icon, label, value]) => (
