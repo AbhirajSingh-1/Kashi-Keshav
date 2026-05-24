@@ -58,25 +58,55 @@ export default function VolunteerForm() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setStatus("sending")
-    try {
-      // Build a combined message that includes City, Skills, and any extra notes
-      const parts = []
-      if (form.city)       parts.push(`City: ${form.city}`)
-      if (selected.length) parts.push(`Skills: ${selected.join(", ")}`)
-      if (form.message)    parts.push(`Note: ${form.message}`)
-      const combinedMessage = parts.join(" | ") || "(Volunteer registration — no additional details)"
 
-      const body = new FormData()
-      body.append(ENTRY.name,     form.name)
-      body.append(ENTRY.email,    form.email)
-      body.append(ENTRY.phone,    form.phone)
-      body.append(ENTRY.interest, "Volunteering")           // Auto-set interest
-      body.append(ENTRY.message,  combinedMessage)          // Combined field
-      await fetch(FORM_URL, { method: "POST", mode: "no-cors", body })
-      setStatus("sent")
-    } catch {
-      setStatus("error")
+    // Build a combined message that includes City, Skills, and any extra notes
+    const parts = []
+    if (form.city)       parts.push(`City: ${form.city}`)
+    if (selected.length) parts.push(`Skills: ${selected.join(", ")}`)
+    if (form.message)    parts.push(`Note: ${form.message}`)
+    const combinedMessage = parts.join(" | ") || "(Volunteer registration — no additional details)"
+
+    // Use a hidden iframe + real form POST.
+    // Google Forms reliably accepts application/x-www-form-urlencoded
+    // (which is what a normal <form> POST sends), but silently
+    // ignores multipart/form-data from fetch + FormData.
+    const iframeName = "volunteer-hidden-iframe"
+
+    let iframe = document.getElementById(iframeName)
+    if (!iframe) {
+      iframe = document.createElement("iframe")
+      iframe.id = iframeName
+      iframe.name = iframeName
+      iframe.style.display = "none"
+      document.body.appendChild(iframe)
     }
+
+    const hiddenForm = document.createElement("form")
+    hiddenForm.method = "POST"
+    hiddenForm.action = FORM_URL
+    hiddenForm.target = iframeName
+
+    const fields = {
+      [ENTRY.name]:     form.name,
+      [ENTRY.email]:    form.email,
+      [ENTRY.phone]:    form.phone,
+      [ENTRY.interest]: "Volunteering",
+      [ENTRY.message]:  combinedMessage,
+    }
+
+    Object.entries(fields).forEach(([key, value]) => {
+      const input = document.createElement("input")
+      input.type = "hidden"
+      input.name = key
+      input.value = value
+      hiddenForm.appendChild(input)
+    })
+
+    document.body.appendChild(hiddenForm)
+    hiddenForm.submit()
+    document.body.removeChild(hiddenForm)
+
+    setTimeout(() => setStatus("sent"), 1500)
   }
 
   if (status === "sent") {

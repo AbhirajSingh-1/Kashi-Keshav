@@ -35,18 +35,52 @@ export default function ContactForm() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setStatus("sending")
-    try {
-      const body = new FormData()
-      body.append(ENTRY.name,     form.name)
-      body.append(ENTRY.email,    form.email)
-      body.append(ENTRY.phone,    form.phone)
-      body.append(ENTRY.interest, form.interest)
-      body.append(ENTRY.message,  form.message)
-      await fetch(FORM_URL, { method: "POST", mode: "no-cors", body })
-      setStatus("sent")
-    } catch {
-      setStatus("error")
+
+    // Build a real <form> that POSTs to a hidden <iframe>.
+    // This sends as application/x-www-form-urlencoded, which
+    // Google Forms reliably accepts (fetch + FormData sends
+    // multipart/form-data which Google silently ignores).
+    const iframeName = "contact-hidden-iframe"
+
+    // Create hidden iframe (if not already present)
+    let iframe = document.getElementById(iframeName)
+    if (!iframe) {
+      iframe = document.createElement("iframe")
+      iframe.id = iframeName
+      iframe.name = iframeName
+      iframe.style.display = "none"
+      document.body.appendChild(iframe)
     }
+
+    // Build and submit a hidden form
+    const hiddenForm = document.createElement("form")
+    hiddenForm.method = "POST"
+    hiddenForm.action = FORM_URL
+    hiddenForm.target = iframeName
+
+    const fields = {
+      [ENTRY.name]:     form.name,
+      [ENTRY.email]:    form.email,
+      [ENTRY.phone]:    form.phone,
+      [ENTRY.interest]: form.interest,
+      [ENTRY.message]:  form.message,
+    }
+
+    Object.entries(fields).forEach(([key, value]) => {
+      const input = document.createElement("input")
+      input.type = "hidden"
+      input.name = key
+      input.value = value
+      hiddenForm.appendChild(input)
+    })
+
+    document.body.appendChild(hiddenForm)
+    hiddenForm.submit()
+    document.body.removeChild(hiddenForm)
+
+    // Google doesn't send back a readable response cross-origin,
+    // so we show success after a short delay for the POST to land.
+    setTimeout(() => setStatus("sent"), 1500)
   }
 
   if (status === "sent") {
