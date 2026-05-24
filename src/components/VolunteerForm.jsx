@@ -3,23 +3,29 @@ import { SiteIcon } from "./IconMap"
 
 /**
  * ─────────────────────────────────────────────────
- *  HOW TO FIND YOUR GOOGLE FORM ENTRY IDs
+ *  GOOGLE FORM CONFIGURATION
  * ─────────────────────────────────────────────────
- *  1. Open your Google Form link in Chrome
- *  2. Press Ctrl+U (View Page Source)
- *  3. Press Ctrl+F and search for: entry.
- *  4. Match each field below to its entry number
+ *  Uses the same Google Form as ContactForm.
+ *  Form: "Contact information"
+ *  Fields: Name, Email, Phone, Interest, Message
+ *
+ *  Mapping strategy:
+ *   - Name   → entry.2005620554
+ *   - Email  → entry.1045781291
+ *   - Phone  → entry.1166974658
+ *   - Interest → entry.1621959302 (set to "Volunteering")
+ *   - Message → entry.839337160  (combines City, Skills, and Message)
  * ─────────────────────────────────────────────────
  */
 const FORM_URL =
   "https://docs.google.com/forms/d/e/1FAIpQLSfGdYH0B5TLZZO9pUnC56xmiEUG63Koxz90W7olZyhjs6WsLQ/formResponse"
 
 const ENTRY = {
-  name:   "entry.REPLACE_WITH_NAME_ID",    // e.g. entry.2005620554
-  email:  "entry.REPLACE_WITH_EMAIL_ID",   // e.g. entry.1045781291
-  phone:  "entry.REPLACE_WITH_PHONE_ID",   // e.g. entry.1166974658
-  city:   "entry.REPLACE_WITH_CITY_ID",    // e.g. entry.839337160  (if form has City field)
-  skills: "entry.REPLACE_WITH_SKILLS_ID",  // e.g. entry.1886663040
+  name:     "entry.2005620554",
+  email:    "entry.1045781291",
+  phone:    "entry.1166974658",
+  interest: "entry.1621959302",
+  message:  "entry.839337160",
 }
 
 const skillOptions = [
@@ -37,7 +43,7 @@ const inputCls =
   "w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-medium text-slate-800 placeholder-slate-400 outline-none transition focus:border-orange-400 focus:bg-white focus:ring-2 focus:ring-orange-100"
 
 export default function VolunteerForm() {
-  const [form, setForm]     = useState({ name:"", email:"", phone:"", city:"", skills:"", message:"" })
+  const [form, setForm]     = useState({ name:"", email:"", phone:"", city:"", message:"" })
   const [selected, setSelected] = useState([])
   const [status, setStatus] = useState("idle")
 
@@ -53,12 +59,19 @@ export default function VolunteerForm() {
     e.preventDefault()
     setStatus("sending")
     try {
+      // Build a combined message that includes City, Skills, and any extra notes
+      const parts = []
+      if (form.city)       parts.push(`City: ${form.city}`)
+      if (selected.length) parts.push(`Skills: ${selected.join(", ")}`)
+      if (form.message)    parts.push(`Note: ${form.message}`)
+      const combinedMessage = parts.join(" | ") || "(Volunteer registration — no additional details)"
+
       const body = new FormData()
-      body.append(ENTRY.name,   form.name)
-      body.append(ENTRY.email,  form.email)
-      body.append(ENTRY.phone,  form.phone)
-      body.append(ENTRY.city,   form.city)
-      body.append(ENTRY.skills, selected.join(", ") + (form.message ? ` — ${form.message}` : ""))
+      body.append(ENTRY.name,     form.name)
+      body.append(ENTRY.email,    form.email)
+      body.append(ENTRY.phone,    form.phone)
+      body.append(ENTRY.interest, "Volunteering")           // Auto-set interest
+      body.append(ENTRY.message,  combinedMessage)          // Combined field
       await fetch(FORM_URL, { method: "POST", mode: "no-cors", body })
       setStatus("sent")
     } catch {
@@ -77,7 +90,7 @@ export default function VolunteerForm() {
           Welcome to the team! We'll reach out to you within 48 hours with next steps.
         </p>
         <button
-          onClick={() => { setForm({ name:"", email:"", phone:"", city:"", skills:"", message:"" }); setSelected([]); setStatus("idle") }}
+          onClick={() => { setForm({ name:"", email:"", phone:"", city:"", message:"" }); setSelected([]); setStatus("idle") }}
           className="mt-2 rounded-full bg-orange-500 px-6 py-2.5 text-sm font-bold text-white transition hover:bg-orange-600"
         >
           Submit another

@@ -11,22 +11,26 @@ export default function Footer() {
       <div className="h-1 w-full bg-gradient-to-r from-blue-600 via-blue-500 to-orange-500" />
 
       {/* ── CTA Banner ── */}
-      <div className="bg-gradient-to-br from-blue-700 via-blue-700 to-blue-800">
-        <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+      <div className="relative overflow-hidden bg-slate-900">
+        {/* Subtle decorative blobs */}
+        <div className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-blue-600/20 blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-16 -left-10 h-48 w-48 rounded-full bg-orange-500/15 blur-3xl" />
+
+        <div className="relative mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
           <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <p className="text-[0.7rem] font-black uppercase tracking-[0.24em] text-orange-300">
+              <p className="text-[0.7rem] font-black uppercase tracking-[0.24em] text-orange-400">
                 Make care practical
               </p>
               <h2 className="mt-2 text-xl font-black leading-snug text-white sm:text-2xl lg:text-3xl">
                 Help children access learning,{" "}
-                <span className="text-orange-300">meals &amp; health support.</span>
+                <span className="text-orange-400">meals &amp; health support.</span>
               </h2>
             </div>
             <ButtonLink
               to="/donate"
               icon="Heart"
-              className="w-full shrink-0 justify-center border-2 border-white/30  text-blue-700 hover:bg-orange-500 hover:text-white hover:border-orange-500 sm:w-auto"
+              className="w-full shrink-0 justify-center border-2 border-white/30 text-white hover:bg-orange-500 hover:text-white hover:border-orange-500 sm:w-auto"
             >
               Donate Now
             </ButtonLink>

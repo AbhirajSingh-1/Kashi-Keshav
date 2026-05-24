@@ -3,27 +3,25 @@ import { SiteIcon } from "./IconMap"
 
 /**
  * ─────────────────────────────────────────────────
- *  HOW TO FIND YOUR GOOGLE FORM ENTRY IDs
+ *  GOOGLE FORM CONFIGURATION
  * ─────────────────────────────────────────────────
- *  1. Open your Google Form link in Chrome
- *  2. Press Ctrl+U (View Page Source)
- *  3. Press Ctrl+F and search for: entry.
- *  4. You'll see inputs like name="entry.1234567890"
- *  5. Match each field name below and paste the numbers
+ *  Form: "Contact information"
+ *  Fields: Name, Email, Phone, Interest, Message
+ *  Entry IDs extracted from form page source.
  * ─────────────────────────────────────────────────
  */
 const FORM_URL =
   "https://docs.google.com/forms/d/e/1FAIpQLSfGdYH0B5TLZZO9pUnC56xmiEUG63Koxz90W7olZyhjs6WsLQ/formResponse"
 
 const ENTRY = {
-  name:     "entry.REPLACE_WITH_NAME_ID",     // e.g. entry.2005620554
-  email:    "entry.REPLACE_WITH_EMAIL_ID",    // e.g. entry.1045781291
-  phone:    "entry.REPLACE_WITH_PHONE_ID",    // e.g. entry.1166974658
-  interest: "entry.REPLACE_WITH_INTEREST_ID", // e.g. entry.839337160
-  message:  "entry.REPLACE_WITH_MESSAGE_ID",  // e.g. entry.1886663040
+  name:     "entry.2005620554",
+  email:    "entry.1045781291",
+  phone:    "entry.1166974658",
+  interest: "entry.1621959302",
+  message:  "entry.839337160",
 }
 
-const interests = ["Donation", "Volunteering", "Sponsorship", "Partnership", "Other"]
+const interests = ["Donation", "Volunteering", "Sponsorship", "Partnership"]
 
 const inputCls =
   "w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-medium text-slate-800 placeholder-slate-400 outline-none transition focus:border-blue-400 focus:bg-white focus:ring-2 focus:ring-blue-100"

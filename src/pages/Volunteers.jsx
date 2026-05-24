@@ -92,44 +92,49 @@ export default function Volunteers() {
           <div className="overflow-hidden rounded-[2rem] bg-white shadow-2xl shadow-slate-900/8 ring-1 ring-slate-100 lg:grid lg:grid-cols-[360px_1fr] xl:grid-cols-[400px_1fr]">
 
             {/* Left info panel */}
-            <aside className="flex flex-col justify-between gap-8 bg-gradient-to-br from-orange-500 via-orange-500 to-blue-700 p-8 text-white sm:p-10">
-              <div>
+            <aside className="relative flex flex-col justify-between gap-8 overflow-hidden bg-slate-900 p-8 text-white sm:p-10">
+              {/* Subtle decorative blobs */}
+              <div className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-blue-600/20 blur-3xl" />
+              <div className="pointer-events-none absolute -bottom-16 -left-10 h-48 w-48 rounded-full bg-orange-500/15 blur-3xl" />
+
+              <div className="relative">
                 <div className="flex items-center gap-3">
-                  <span className="grid h-9 w-9 place-items-center rounded-xl bg-white/15 ring-1 ring-white/30">
-                    <SiteIcon name="Users" className="h-4 w-4 text-white" />
+                  <span className="grid h-9 w-9 place-items-center rounded-xl bg-orange-500/20 ring-1 ring-orange-400/30">
+                    <SiteIcon name="Users" className="h-4 w-4 text-orange-400" />
                   </span>
-                  <span className="text-xs font-black uppercase tracking-[0.18em] text-white/70">
+                  <span className="text-xs font-black uppercase tracking-[0.18em] text-orange-400">
                     Join the team
                   </span>
                 </div>
 
-                <h2 className="mt-7 text-2xl font-black leading-snug sm:text-3xl">
+                <h2 className="mt-7 text-2xl font-black leading-snug text-white sm:text-3xl">
                   Bring your skills to a child-focused cause.
                 </h2>
-                <p className="mt-3 text-sm leading-7 text-orange-50">
+                <p className="mt-3 text-sm leading-7 text-slate-400">
                   Every skill — big or small — finds a meaningful place at Kashi Keshav.
                 </p>
 
                 <div className="mt-8 grid gap-5">
                   {perks.map(({ icon, title, desc }) => (
                     <div key={title} className="flex items-start gap-3">
-                      <span className="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-white/15 ring-1 ring-white/20">
-                        <SiteIcon name={icon} className="h-4 w-4 text-white" />
+                      <span className="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-white/8 ring-1 ring-white/10">
+                        <SiteIcon name={icon} className="h-4 w-4 text-orange-400" />
                       </span>
                       <div>
                         <p className="text-sm font-black text-white">{title}</p>
-                        <p className="mt-0.5 text-xs leading-5 text-orange-100">{desc}</p>
+                        <p className="mt-0.5 text-xs leading-5 text-slate-400">{desc}</p>
                       </div>
                     </div>
                   ))}
                 </div>
               </div>
 
-              <div className="rounded-2xl bg-white/10 p-5 ring-1 ring-white/15">
-                <p className="text-xs leading-6 text-orange-50 italic">
+              <div className="relative rounded-2xl border border-white/8 bg-white/5 p-5">
+                <SiteIcon name="Quote" className="mb-3 h-5 w-5 text-orange-400/60" />
+                <p className="text-sm leading-7 text-slate-300 italic">
                   "Volunteering here changed how I see impact. Every small act adds up to something real for these children."
                 </p>
-                <p className="mt-2 text-xs font-black uppercase tracking-[0.14em] text-white/50">
+                <p className="mt-3 text-xs font-black uppercase tracking-[0.14em] text-slate-500">
                   — A Kashi Keshav volunteer
                 </p>
               </div>
