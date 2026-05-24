@@ -99,7 +99,7 @@ export default function Header() {
 
         {/* ── Desktop CTAs ── */}
         <div className="hidden items-center gap-3 min-[1400px]:flex">
-          <ButtonLink to="/volunteers" variant="secondary" icon="Users" className="px-4 py-2.5">
+          <ButtonLink to="/volunteers#register" variant="secondary" icon="Users" className="px-4 py-2.5">
             Join Us
           </ButtonLink>
           <ButtonLink to="/donate" icon="Heart" className="px-4 py-2.5">
@@ -199,7 +199,7 @@ export default function Header() {
 
         <div className="grid grid-cols-2 gap-3 border-t border-slate-100 p-3">
           <ButtonLink
-            to="/volunteers"
+            to="/volunteers#register"
             variant="secondary"
             icon="Users"
             onClick={() => setOpen(false)}

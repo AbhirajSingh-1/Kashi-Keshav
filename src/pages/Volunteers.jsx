@@ -1,10 +1,17 @@
-import ButtonLink from "../components/ButtonLink"
 import PageHero from "../components/PageHero"
 import SectionHeader from "../components/SectionHeader"
 import Seo from "../components/Seo"
 import VolunteerCard from "../components/VolunteerCard"
+import VolunteerForm from "../components/VolunteerForm"
 import { SiteIcon } from "../components/IconMap"
 import { additionalVolunteers, founder, images, volunteers } from "../data/siteData"
+
+const perks = [
+  { icon: "BookOpen", title: "Skill-based roles",  desc: "Tutoring, design, fundraising, field coordination — pick what fits you." },
+  { icon: "MapPin",   title: "Work from anywhere", desc: "Remote and on-ground opportunities available across India." },
+  { icon: "Users",    title: "Join a caring team", desc: "Work alongside passionate volunteers who show up for children." },
+  { icon: "Heart",    title: "Real impact",         desc: "Every hour you give reaches a child who needs it most." },
+]
 
 export default function Volunteers() {
   return (
@@ -22,6 +29,7 @@ export default function Volunteers() {
         secondary={{ label: "Contact Team", to: "/contact", icon: "MessageCircle" }}
       />
 
+      {/* ── Founder ── */}
       <section className="py-20">
         <div className="container-shell">
           <SectionHeader
@@ -33,6 +41,7 @@ export default function Volunteers() {
         </div>
       </section>
 
+      {/* ── Core volunteers ── */}
       <section className="bg-slate-50 py-20">
         <div className="container-shell">
           <SectionHeader
@@ -48,6 +57,7 @@ export default function Volunteers() {
         </div>
       </section>
 
+      {/* ── Additional volunteers ── */}
       <section className="py-20">
         <div className="container-shell">
           <SectionHeader
@@ -76,46 +86,66 @@ export default function Volunteers() {
         </div>
       </section>
 
-      <section id="register" className="bg-blue-50/70 py-20">
-        <div className="container-shell grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
-          <div>
-            <SectionHeader
-              align="left"
-              eyebrow="Volunteer registration"
-              title="Bring your skills to a child-focused cause."
-              description="Tell us how you would like to help. You can support tutoring, content, field drives, fundraising, operations, community outreach, or event coordination."
-              className="mb-0"
-            />
+      {/* ── Registration ── */}
+      <section id="register" className="bg-slate-50 py-20">
+        <div className="container-shell">
+          <div className="overflow-hidden rounded-[2rem] bg-white shadow-2xl shadow-slate-900/8 ring-1 ring-slate-100 lg:grid lg:grid-cols-[360px_1fr] xl:grid-cols-[400px_1fr]">
+
+            {/* Left info panel */}
+            <aside className="flex flex-col justify-between gap-8 bg-gradient-to-br from-orange-500 via-orange-500 to-blue-700 p-8 text-white sm:p-10">
+              <div>
+                <div className="flex items-center gap-3">
+                  <span className="grid h-9 w-9 place-items-center rounded-xl bg-white/15 ring-1 ring-white/30">
+                    <SiteIcon name="Users" className="h-4 w-4 text-white" />
+                  </span>
+                  <span className="text-xs font-black uppercase tracking-[0.18em] text-white/70">
+                    Join the team
+                  </span>
+                </div>
+
+                <h2 className="mt-7 text-2xl font-black leading-snug sm:text-3xl">
+                  Bring your skills to a child-focused cause.
+                </h2>
+                <p className="mt-3 text-sm leading-7 text-orange-50">
+                  Every skill — big or small — finds a meaningful place at Kashi Keshav.
+                </p>
+
+                <div className="mt-8 grid gap-5">
+                  {perks.map(({ icon, title, desc }) => (
+                    <div key={title} className="flex items-start gap-3">
+                      <span className="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-white/15 ring-1 ring-white/20">
+                        <SiteIcon name={icon} className="h-4 w-4 text-white" />
+                      </span>
+                      <div>
+                        <p className="text-sm font-black text-white">{title}</p>
+                        <p className="mt-0.5 text-xs leading-5 text-orange-100">{desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="rounded-2xl bg-white/10 p-5 ring-1 ring-white/15">
+                <p className="text-xs leading-6 text-orange-50 italic">
+                  "Volunteering here changed how I see impact. Every small act adds up to something real for these children."
+                </p>
+                <p className="mt-2 text-xs font-black uppercase tracking-[0.14em] text-white/50">
+                  — A Kashi Keshav volunteer
+                </p>
+              </div>
+            </aside>
+
+            {/* Right: custom form */}
+            <div className="p-7 sm:p-10">
+              <div className="mb-7">
+                <p className="text-xs font-black uppercase tracking-[0.16em] text-orange-500">Volunteer registration</p>
+                <h3 className="mt-1 text-xl font-black text-slate-900 sm:text-2xl">
+                  Fill in your details below.
+                </h3>
+              </div>
+              <VolunteerForm />
+            </div>
           </div>
-          <form className="grid gap-4 rounded-[1.5rem] bg-white p-4 shadow-xl shadow-blue-900/6 ring-1 ring-blue-100 sm:rounded-[2rem] sm:p-6" onSubmit={(event) => event.preventDefault()}>
-            <div className="grid gap-4 sm:grid-cols-2">
-              <label className="grid gap-2 text-sm font-bold text-slate-700">
-                Full name
-                <input className="form-field" placeholder="Your name" />
-              </label>
-              <label className="grid gap-2 text-sm font-bold text-slate-700">
-                City
-                <input className="form-field" placeholder="City, State" />
-              </label>
-            </div>
-            <div className="grid gap-4 sm:grid-cols-2">
-              <label className="grid gap-2 text-sm font-bold text-slate-700">
-                Email
-                <input className="form-field" type="email" placeholder="you@example.com" />
-              </label>
-              <label className="grid gap-2 text-sm font-bold text-slate-700">
-                Phone
-                <input className="form-field" placeholder="+91" />
-              </label>
-            </div>
-            <label className="grid gap-2 text-sm font-bold text-slate-700">
-              How can you help?
-              <textarea className="form-field min-h-32 resize-none" placeholder="Tutoring, drives, fundraising, design, outreach..." />
-            </label>
-            <ButtonLink type="submit" icon="ArrowRight" className="justify-self-start">
-              Submit Registration
-            </ButtonLink>
-          </form>
         </div>
       </section>
     </>
